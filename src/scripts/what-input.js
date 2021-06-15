@@ -162,8 +162,8 @@ module.exports = (() => {
     window.addEventListener('keyup', setInput)
 
     // focus events
-    window.addEventListener('focusin', setElement)
-    window.addEventListener('focusout', clearElement)
+    // window.addEventListener('focusin', setElement)
+    // window.addEventListener('focusout', clearElement)
   }
 
   // checks if input persistence should happen and

@@ -77,9 +77,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	      },
 
 	      // always return null
-	      // element: function element() {
-	      //   return null;
-	      // },
+	      element: function element() {
+	        return null;
+	      },
 
 	      // no-op
 	      ignoreKeys: function ignoreKeys() {},
@@ -103,7 +103,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  var docElem = document.documentElement;
 
 	  // currently focused dom element
-	  //var currentElement = null;
+	  // let currentElement = null
 
 	  // last used input type
 	  var currentInput = 'initial';
@@ -226,8 +226,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	    window.addEventListener('keyup', setInput);
 
 	    // focus events
-	    //window.addEventListener('focusin', setElement);
-	    //window.addEventListener('focusout', clearElement);
+	    window.addEventListener('focusin', setElement);
+	    window.addEventListener('focusout', clearElement);
 	  };
 
 	  // checks if input persistence should happen and
@@ -282,18 +282,18 @@ return /******/ (function(modules) { // webpackBootstrap
 	      doUpdate('input');
 	    }
 
-	    //if (shouldUpdate && currentIntent !== value) {
+	    if (shouldUpdate && currentIntent !== value) {
 	      // preserve intent for keyboard interaction with form fields
-	      //var activeElem = document.activeElement;
-	      //var notFormInput = activeElem && activeElem.nodeName && (formInputs.indexOf(activeElem.nodeName.toLowerCase()) === -1 || activeElem.nodeName.toLowerCase() === 'button' && !checkClosest(activeElem, 'form'));
+	      var activeElem = document.activeElement;
+	      var notFormInput = activeElem && activeElem.nodeName && (formInputs.indexOf(activeElem.nodeName.toLowerCase()) === -1 || activeElem.nodeName.toLowerCase() === 'button' && !checkClosest(activeElem, 'form'));
 
-	      //if (notFormInput) {
-	        //currentIntent = value;
+	      if (notFormInput) {
+	        currentIntent = value;
 
-	        //persistInput('intent', currentIntent);
-	        //doUpdate('intent');
-	      //}
-	    //}
+	        persistInput('intent', currentIntent);
+	        doUpdate('intent');
+	      }
+	    }
 	  };
 
 	  // updates the doc and `inputTypes` array with new input
@@ -323,28 +323,31 @@ return /******/ (function(modules) { // webpackBootstrap
 	    }
 	  };
 
-	  //var setElement = function setElement(event) {
-	    //if (!event.target.nodeName) {
-	      // If nodeName is undefined, clear the element
-	      // This can happen if click inside an <svg> element.
-	      //clearElement();
-	      //return;
-	    //}
+	  // const setElement = event => {
+	  //   if (!event.target.nodeName) {
+	  //     // If nodeName is undefined, clear the element
+	  //     // This can happen if click inside an <svg> element.
+	  //     clearElement()
+	  //     return
+	  //   }
 
-	    //currentElement = event.target.nodeName.toLowerCase();
-	    //docElem.setAttribute('data-whatelement', currentElement);
+	  //   currentElement = event.target.nodeName.toLowerCase()
+	  //   docElem.setAttribute('data-whatelement', currentElement)
 
-	    //if (event.target.classList && event.target.classList.length) {
-	      //docElem.setAttribute('data-whatclasses', event.target.classList.toString().replace(' ', ','));
-	    //}
-	  //};
+	  //   if (event.target.classList && event.target.classList.length) {
+	  //     docElem.setAttribute(
+	  //       'data-whatclasses',
+	  //       event.target.classList.toString().replace(' ', ',')
+	  //     )
+	  //   }
+	  // }
 
-	  //var clearElement = function clearElement() {
-	    //currentElement = null;
+	  // const clearElement = () => {
+	  //   currentElement = null
 
-	    //docElem.removeAttribute('data-whatelement');
-	    //docElem.removeAttribute('data-whatclasses');
-	  //};
+	  //   docElem.removeAttribute('data-whatelement')
+	  //   docElem.removeAttribute('data-whatclasses')
+	  // }
 
 	  var persistInput = function persistInput(which, value) {
 	    if (shouldPersist) {
@@ -473,8 +476,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	    },
 
 	    // returns string: the currently focused element or null
-	    // element: function element() {
-	    //   return currentElement;
+	    // element: () => {
+	    //   return currentElement
 	    // },
 
 	    // overwrites ignored keys with provided array
